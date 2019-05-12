@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-    [SerializeField] float damage = 1f;
     [SerializeField] float speed = 1f;
     private Vector2 direction;
 
@@ -27,6 +26,10 @@ public class BulletLogic : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-            Destroy( gameObject );
+        if(collision.collider.CompareTag("Boss"))
+        {
+            collision.gameObject.GetComponent<BossHealth>().DamageSelf();
+        }
+        Destroy( gameObject );
     }
 }

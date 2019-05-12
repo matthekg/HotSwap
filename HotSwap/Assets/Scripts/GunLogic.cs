@@ -9,6 +9,8 @@ public class GunLogic : MonoBehaviour
     private Transform rotationPoint;
     private string shootControl;
     private bool currentlyShooting = false;
+    private float nextFire = 0f;
+    [SerializeField] float autoFireRate = 1f;
     [SerializeField] GameObject bullet;
 
     void Start()
@@ -31,8 +33,7 @@ public class GunLogic : MonoBehaviour
         transform.position = rotationPoint.position + gunDistanceFromSelf;
 
         if (Input.GetAxisRaw(shootControl) != 0) {
-            if (currentlyShooting == false) {
-                currentlyShooting = true;
+            if (!currentlyShooting || Time.time > nextFire) {
                 Shoot(centerToMouseDir);
             }
         }
@@ -44,7 +45,11 @@ public class GunLogic : MonoBehaviour
 
     public void Shoot( Vector2 direction )
     {
+        currentlyShooting = true;
+
+        nextFire = Time.time + autoFireRate;
         GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity );
         newBullet.GetComponent<BulletLogic>().SetDirection( direction.normalized );
+
     }
 }
