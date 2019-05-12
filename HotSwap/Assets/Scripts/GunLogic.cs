@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunLogic : MonoBehavioura
+public class GunLogic : MonoBehaviour
 {
     [Header("GunMovement")]
     public float armLength = 1f;
     private Transform rotationPoint;
-
+    private string shootControl;
+    private bool currentlyShooting = false;
+    [SerializeField] GameObject bullet;
 
     void Start()
     {
+        shootControl = transform.parent.GetComponent<HeroMovement>().shootControl;
         rotationPoint = transform.parent.transform;    
     }
 
@@ -24,6 +27,24 @@ public class GunLogic : MonoBehavioura
         centerToMouseDir.z = -.43f;
 
         // Put the gun in that direction, as far as the armlength
-        transform.position = rotationPoint.position + (armLength * centerToMouseDir.normalized);
+        Vector3 gunDistanceFromSelf = armLength * centerToMouseDir.normalized;
+        transform.position = rotationPoint.position + gunDistanceFromSelf;
+
+        if (Input.GetAxisRaw(shootControl) != 0) {
+            if (currentlyShooting == false) {
+                currentlyShooting = true;
+                Shoot(centerToMouseDir);
+            }
+        }
+        if (Input.GetAxisRaw(shootControl) == 0) {
+            currentlyShooting = false;
+        }
+
+    }
+
+    public void Shoot( Vector2 direction )
+    {
+        GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity );
+        newBullet.GetComponent<BulletLogic>().SetDirection( direction.normalized );
     }
 }
