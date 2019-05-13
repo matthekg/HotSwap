@@ -234,5 +234,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armLength: 0.45
-  fireRate: 0.3
+  autoFireRate: 0.3
   bullet: {fileID: 405057579124153631, guid: 7f1941e55cc5e024e9e66e29cdbbb32e, type: 3}
