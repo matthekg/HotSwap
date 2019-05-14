@@ -448,6 +448,11 @@ PrefabInstance:
       propertyPath: bossGameObject
       value: 
       objectReference: {fileID: 889981678693567683}
+    - target: {fileID: 1373301776571549582, guid: d86c9598722f0f145a4e12277e989180,
+        type: 3}
+      propertyPath: spiralPauseTime
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86c9598722f0f145a4e12277e989180, type: 3}
 --- !u!1 &519420028
@@ -1057,6 +1062,46 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7324342171249065520, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324342171249065520, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324342171249065520, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324342171249065520, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324342171249065520, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324342171249065520, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324342171249065520, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324342171249065520, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7324342172410262342, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1066,6 +1111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324342171895856886, guid: 82a7e5d389ab7a94894ae3e08ad0ba82,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a7e5d389ab7a94894ae3e08ad0ba82, type: 3}
@@ -1135,6 +1185,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053882315770537732, guid: 45bae2f0e90ad984cb8dc554ee521ed8,
+        type: 3}
+      propertyPath: armLength
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45bae2f0e90ad984cb8dc554ee521ed8, type: 3}

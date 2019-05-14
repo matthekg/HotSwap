@@ -43,13 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d72ed137f1e2c42905153ae65e9d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossGameObject: {fileID: 889981678693567683, guid: 10fa649e51a543046a9c8d546a32572c,
-    type: 3}
+  bossGameObject: {fileID: 0}
   bulletPrefab: {fileID: 6246949423883536433, guid: 5d90bd8145d7f4c4d8b132ab1c0d6494,
     type: 3}
   numBullets_ring: 18
   circleSpawnRadius: 2
   numBullets_spiral: 64
   skipEvery: 7
-  spiralPauseTime: 0.01
+  spiralPauseTime: 0.02
   counterClockwise: 0
