@@ -10,7 +10,6 @@ public class BossBulletLogic : MonoBehaviour
     private bool pauseBeforeMoving = false;
     [SerializeField] float pauseTime = 0.25f;
     private bool move = true;
-    private bool turning = false;
 
     private Rigidbody2D rb;
 
@@ -29,11 +28,6 @@ public class BossBulletLogic : MonoBehaviour
         }
 
         rb.velocity = direction * currentSpeed;
-
-        if( turning )
-        {
-          //  rb.AddForce(Vector2.down);
-        }
     }
 
     public void SetDirection(Vector2 newDir)
@@ -51,10 +45,6 @@ public class BossBulletLogic : MonoBehaviour
         speed = newSpeed;
     }
 
-    public void SetTurn( bool choice )
-    {
-        turning = choice;
-    }
 
     IEnumerator PauseMovement()
     {

@@ -9,15 +9,17 @@ using UnityEngine;
 public class BulletSpawner : MonoBehaviour
 {
     public GameObject bossGameObject = null;
+    public GameObject bulletPrefab;
 
     [Header("[1] : BulletRing")]
     [SerializeField] int numBullets_ring = 12;
     [SerializeField] float circleSpawnRadius = 3f;
-    public GameObject bulletPrefab;
 
     [Header("[2] : BulletSpiral")]
     [SerializeField] int numBullets_spiral = 20;
+    [SerializeField] int skipEvery = 1;
     [SerializeField] float spiralPauseTime = 1f;
+    [SerializeField] bool counterClockwise = false;
     private Coroutine spiral = null;
 
     void Awake()
@@ -40,6 +42,10 @@ public class BulletSpawner : MonoBehaviour
         {
             StopCoroutine(spiral);
         }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            counterClockwise = ToggleBool(counterClockwise);
+        }
 
     }
 
@@ -55,13 +61,17 @@ public class BulletSpawner : MonoBehaviour
             newBullet.gameObject.GetComponent<BossBulletLogic>().SetPause(true);
         }
     }
-
+    // set angles to high and skip angles
     IEnumerator SpawnSpiral()
     {
         int counter = 0;
         while (true)
         {
-            ++counter;
+            if (counterClockwise)
+                counter -= skipEvery;
+            else
+                counter += skipEvery;
+
             Vector3 center = bossGameObject.transform.position;
             Vector3 pos = Circle(center, counter, circleSpawnRadius, numBullets_spiral);
 
@@ -80,5 +90,13 @@ public class BulletSpawner : MonoBehaviour
         pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         pos.z = center.z;
         return pos;
+    }
+
+    private bool ToggleBool(bool target)
+    {
+        if (target)
+            return false;
+        else
+            return true;
     }
 }

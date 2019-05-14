@@ -448,16 +448,6 @@ PrefabInstance:
       propertyPath: bossGameObject
       value: 
       objectReference: {fileID: 889981678693567683}
-    - target: {fileID: 1373301776571549582, guid: d86c9598722f0f145a4e12277e989180,
-        type: 3}
-      propertyPath: numBullets_ring
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373301776571549582, guid: d86c9598722f0f145a4e12277e989180,
-        type: 3}
-      propertyPath: numBullets_spiral
-      value: 18
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86c9598722f0f145a4e12277e989180, type: 3}
 --- !u!1 &519420028
