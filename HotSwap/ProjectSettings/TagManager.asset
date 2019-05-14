@@ -17,9 +17,9 @@ TagManager:
   - 
   - 
   - Players
-  - Projectiles
+  - Projectile
   - Boss
-  - 
+  - BossProjectile
   - 
   - 
   - 

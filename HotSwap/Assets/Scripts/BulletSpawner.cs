@@ -8,14 +8,20 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
+    public GameObject bossGameObject = null;
+
     [Header("[1] : BulletRing")]
-    [SerializeField] int numBullets = 12;
+    [SerializeField] int numBullets_ring = 12;
     [SerializeField] float circleSpawnRadius = 3f;
     public GameObject bulletPrefab;
 
-    void Start()
-    {
+    [Header("[2] : BulletSpiral")]
+    [SerializeField] int numBullets_spiral = 20;
+    [SerializeField] float spiralPauseTime = 1f;
+    private Coroutine spiral = null;
 
+    void Awake()
+    {
     }
 
     void Update()
@@ -24,23 +30,48 @@ public class BulletSpawner : MonoBehaviour
         {
             SpawnBulletRing();
         }
+
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            Debug.Log("BulletSpiral!");
+            spiral = StartCoroutine(SpawnSpiral());
+        }
+        if (Input.GetKeyUp(KeyCode.Keypad2))
+        {
+            StopCoroutine(spiral);
+        }
+
     }
 
     public void SpawnBulletRing()
     {
         Debug.Log("BulletRing!");
-        Vector3 center = transform.position;
-        for (int i = 1; i <= numBullets; ++i)
+        Vector3 center = bossGameObject.transform.position;
+        for (int i = 1; i <= numBullets_ring; ++i)
         {
-            Vector3 pos = RandomCircle(center, i, circleSpawnRadius);
-            //Quaternion rot = Quaternion.FromToRotation(Vector3.forward, center - pos);
+            Vector3 pos = Circle(center, i, circleSpawnRadius, numBullets_ring);
             GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
             newBullet.gameObject.GetComponent<BossBulletLogic>().SetDirection(pos);
             newBullet.gameObject.GetComponent<BossBulletLogic>().SetPause(true);
         }
     }
 
-    Vector3 RandomCircle(Vector3 center, float angleModifier, float radius)
+    IEnumerator SpawnSpiral()
+    {
+        int counter = 0;
+        while (true)
+        {
+            ++counter;
+            Vector3 center = bossGameObject.transform.position;
+            Vector3 pos = Circle(center, counter, circleSpawnRadius, numBullets_spiral);
+
+            GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
+            newBullet.gameObject.GetComponent<BossBulletLogic>().SetDirection(pos);
+            yield return new WaitForSeconds(spiralPauseTime);
+        }
+    }
+
+    Vector3 Circle(Vector3 center, float angleModifier, float radius, float numBullets)
     {
         angleModifier = angleModifier / numBullets;
         float ang = angleModifier * 360;
