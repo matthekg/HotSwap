@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
  * Courtesy of https://answers.unity.com/questions/714835/best-way-to-spawn-prefabs-in-a-circle.html
@@ -11,6 +12,8 @@ public class BulletSpawner : MonoBehaviour
     public GameObject bossGameObject = null;
     public GameObject bulletPrefab;
 
+    private Slider spiralSlider = null;
+
     [Header("[1] : BulletRing")]
     [SerializeField] int numBullets_ring = 12;
     [SerializeField] float circleSpawnRadius = 3f;
@@ -20,10 +23,15 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] int skipEvery = 1;
     [SerializeField] float spiralPauseTime = 1f;
     [SerializeField] bool counterClockwise = false;
+    [SerializeField] int spiralMeterCapacity = 50;
+    [SerializeField] int meterLeft = 0;
     private Coroutine spiral = null;
+    
 
     void Awake()
     {
+        spiralSlider = GameObject.Find("SpiralMeterSlider").GetComponent<Slider>();
+
     }
 
     void Update()
@@ -33,11 +41,15 @@ public class BulletSpawner : MonoBehaviour
             SpawnBulletRing();
         }
 
+        if( meterLeft < spiralMeterCapacity && !Input.GetKey(KeyCode.Keypad2) )
+            ++meterLeft;
+        UpdateSpiralMeter();
+
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             Debug.Log("BulletSpiral!");
             spiral = StartCoroutine(SpawnSpiral());
-        }
+        }    
         if (Input.GetKeyUp(KeyCode.Keypad2))
         {
             StopCoroutine(spiral);
@@ -67,6 +79,9 @@ public class BulletSpawner : MonoBehaviour
         int counter = 0;
         while (true)
         {
+            --meterLeft;
+            if (meterLeft <= 0)
+                break;
             if (counterClockwise)
                 counter -= skipEvery;
             else
@@ -79,6 +94,10 @@ public class BulletSpawner : MonoBehaviour
             newBullet.gameObject.GetComponent<BossBulletLogic>().SetDirection(pos);
             yield return new WaitForSeconds(spiralPauseTime);
         }
+    }
+    private void UpdateSpiralMeter()
+    {
+        spiralSlider.value = meterLeft;
     }
 
     Vector3 Circle(Vector3 center, float angleModifier, float radius, float numBullets)
