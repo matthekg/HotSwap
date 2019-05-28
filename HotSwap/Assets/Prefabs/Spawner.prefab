@@ -47,9 +47,14 @@ MonoBehaviour:
     type: 3}
   bulletPrefab: {fileID: 6246949423883536433, guid: 5d90bd8145d7f4c4d8b132ab1c0d6494,
     type: 3}
-  numBullets_ring: 18
-  circleSpawnRadius: 2
+  Pattern1: 55
+  numBullets_ring: 60
+  circleSpawnRadius: 1.5
+  Pattern2: 56
+  antiClockwise: 57
   numBullets_spiral: 64
-  skipEvery: 7
-  spiralPauseTime: 0.05
+  skipEvery: 31
+  spiralPauseTime: 0.01
   counterClockwise: 0
+  spiralMeterCapacity: 300
+  meterLeft: 0

@@ -137,9 +137,9 @@ MonoBehaviour:
   dodgeSpeed: 0
   dodgeDistance: 0
   dodgeIFrames: 0
-  horizontalControl: Horizontal
-  verticalControl: Vertical
-  shootControl: Fire1
+  horizontalControl: 
+  verticalControl: 
+  shootControl: 
   dodgeControl: Jump
   rawInputOn: 1
 --- !u!114 &317511585
@@ -248,6 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b32db631e4fd634cb2cc8281257f803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armLength: 0.45
+  armLength: 0.4
   autoFireRate: 0.3
   bullet: {fileID: 405057579124153631, guid: 7f1941e55cc5e024e9e66e29cdbbb32e, type: 3}

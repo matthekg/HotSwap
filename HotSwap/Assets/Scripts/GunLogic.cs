@@ -15,7 +15,7 @@ public class GunLogic : MonoBehaviour
 
     void Start()
     {
-        shootControl = transform.parent.GetComponent<HeroMovement>().shootControl;
+        shootControl = GameObject.Find("GameManager").GetComponent<GameManager>().shootControl;
         rotationPoint = transform.parent.transform;    
     }
 

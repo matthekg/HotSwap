@@ -15,10 +15,16 @@ public class BulletSpawner : MonoBehaviour
     private Slider spiralSlider = null;
 
     [Header("[1] : BulletRing")]
+    public string Pattern1Input = "Pattern1";
+    private bool shootingPattern1 = false;
     [SerializeField] int numBullets_ring = 12;
     [SerializeField] float circleSpawnRadius = 3f;
 
     [Header("[2] : BulletSpiral")]
+    public string Pattern2Input = "Pattern2";
+    public string clockwise = "Clockwise";
+    private bool shootingPattern2 = false;
+    private bool shootingAnti = false;
     [SerializeField] int numBullets_spiral = 20;
     [SerializeField] int skipEvery = 1;
     [SerializeField] float spiralPauseTime = 1f;
@@ -36,34 +42,41 @@ public class BulletSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetAxisRaw(Pattern1Input) != 0 && !shootingPattern1)
         {
+            shootingPattern1 = true;
             SpawnBulletRing();
         }
+        if (Input.GetAxisRaw(Pattern1Input) == 0)
+            shootingPattern1 = false;
 
-        if( meterLeft < spiralMeterCapacity && !Input.GetKey(KeyCode.Keypad2) )
+        if ( meterLeft < spiralMeterCapacity && !Input.GetKey(KeyCode.Keypad2) )
             ++meterLeft;
         UpdateSpiralMeter();
 
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetAxisRaw(Pattern2Input) != 0 && !shootingPattern2)
         {
-            Debug.Log("BulletSpiral!");
+            shootingPattern2 = true;
             spiral = StartCoroutine(SpawnSpiral());
         }    
-        if (Input.GetKeyUp(KeyCode.Keypad2))
+        if (Input.GetAxisRaw(Pattern2Input) == 0)
         {
             StopCoroutine(spiral);
+            shootingPattern2 = false;
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+
+        if (Input.GetAxisRaw(clockwise) != 0 && !shootingAnti)
         {
+            shootingAnti = true;
             counterClockwise = ToggleBool(counterClockwise);
         }
+        if (Input.GetAxisRaw(clockwise) == 0)
+            shootingAnti = false;
 
     }
 
     public void SpawnBulletRing()
     {
-        Debug.Log("BulletRing!");
         Vector3 center = bossGameObject.transform.position;
         for (int i = 1; i <= numBullets_ring; ++i)
         {
@@ -79,7 +92,7 @@ public class BulletSpawner : MonoBehaviour
         int counter = 0;
         while (true)
         {
-            --meterLeft;
+            meterLeft -= 2;
             if (meterLeft <= 0)
                 break;
             if (counterClockwise)
@@ -115,7 +128,6 @@ public class BulletSpawner : MonoBehaviour
     {
         if (target)
             return false;
-        else
-            return true;
+        return true;
     }
 }
