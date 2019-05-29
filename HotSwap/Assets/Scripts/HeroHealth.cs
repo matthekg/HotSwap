@@ -7,9 +7,15 @@ public class HeroHealth : MonoBehaviour
     [SerializeField] int maxHearts = 3;
     [SerializeField] int currentHearts = 0;
 
+    GameObject gm = null;
+    GameManager gmScript = null;
+
     void Awake()
     {
         currentHearts = maxHearts;
+        gm = GameObject.Find("GameManager");
+        gmScript = gm.GetComponent<GameManager>();
+
     }
 
     void Update()
@@ -23,6 +29,6 @@ public class HeroHealth : MonoBehaviour
         if (currentHearts == 0)
             Debug.Log("HERO DEAD. GAME OVER");
 
-        Debug.Log("HERO HIT. SWAP SIDES");
+        gmScript.Swap();
     }
 }

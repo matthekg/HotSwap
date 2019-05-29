@@ -12,12 +12,19 @@ public class BossBulletLogic : MonoBehaviour
     private bool move = true;
 
     private Rigidbody2D rb;
+    GameObject gm = null;
+    GameManager gmScript = null;
 
     void Awake()
     {
         currentSpeed = speed;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0,0);
+        gm = GameObject.Find("GameManager");
+        gmScript = gm.GetComponent<GameManager>();
+
+        gameObject.GetComponent<SpriteRenderer>().color = gmScript.currentBossColor;
+
     }
 
     void Update()

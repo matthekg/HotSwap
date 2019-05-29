@@ -9,20 +9,22 @@ using UnityEngine.UI;
 
 public class BulletSpawner : MonoBehaviour
 {
+    public bool isPlayer1;
+
     public GameObject bossGameObject = null;
     public GameObject bulletPrefab;
 
     private Slider spiralSlider = null;
 
     [Header("[1] : BulletRing")]
-    public string Pattern1Input = "Pattern1";
+    public string Pattern1Input = null;
     private bool shootingPattern1 = false;
     [SerializeField] int numBullets_ring = 12;
     [SerializeField] float circleSpawnRadius = 3f;
 
     [Header("[2] : BulletSpiral")]
-    public string Pattern2Input = "Pattern2";
-    public string clockwise = "Clockwise";
+    public string Pattern2Input = null;
+    public string clockwise = null;
     private bool shootingPattern2 = false;
     private bool shootingAnti = false;
     [SerializeField] int numBullets_spiral = 20;
@@ -31,17 +33,37 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] bool counterClockwise = false;
     [SerializeField] int spiralMeterCapacity = 50;
     [SerializeField] int meterLeft = 0;
+    [SerializeField] int meterGain = 1;
+    [SerializeField] int meterDrain = 1;
     private Coroutine spiral = null;
-    
+
+    GameObject gm = null;
+    GameManager gmScript = null;
 
     void Awake()
     {
         spiralSlider = GameObject.Find("SpiralMeterSlider").GetComponent<Slider>();
+        gm = GameObject.Find("GameManager");
+        gmScript = gm.GetComponent<GameManager>();
+        isPlayer1 = bossGameObject.GetComponent<BossMovement>().isPlayer1;
+        if (isPlayer1)
+        {
+            Pattern1Input = gmScript.Pattern1Input;
+            Pattern2Input = gmScript.Pattern2Input;
+            clockwise = gmScript.clockwise;
+        }
+        else
+        {
+            Pattern1Input = gmScript.Pattern1InputP2;
+            Pattern2Input = gmScript.Pattern2InputP2;
+            clockwise = gmScript.clockwiseP2;
+        }
 
     }
 
     void Update()
     {
+        /**********PATTERN 1 | RING************/
         if (Input.GetAxisRaw(Pattern1Input) != 0 && !shootingPattern1)
         {
             shootingPattern1 = true;
@@ -49,9 +71,11 @@ public class BulletSpawner : MonoBehaviour
         }
         if (Input.GetAxisRaw(Pattern1Input) == 0)
             shootingPattern1 = false;
+        /**************************************/
 
-        if ( meterLeft < spiralMeterCapacity && !Input.GetKey(KeyCode.Keypad2) )
-            ++meterLeft;
+        /**********PATTERN 2 | SPIRAL************/
+        if ( meterLeft < spiralMeterCapacity && !shootingPattern2 )
+            meterLeft += meterGain;
         UpdateSpiralMeter();
 
         if (Input.GetAxisRaw(Pattern2Input) != 0 && !shootingPattern2)
@@ -59,7 +83,7 @@ public class BulletSpawner : MonoBehaviour
             shootingPattern2 = true;
             spiral = StartCoroutine(SpawnSpiral());
         }    
-        if (Input.GetAxisRaw(Pattern2Input) == 0)
+        if (Input.GetAxisRaw(Pattern2Input) == 0 && spiral != null)
         {
             StopCoroutine(spiral);
             shootingPattern2 = false;
@@ -72,7 +96,7 @@ public class BulletSpawner : MonoBehaviour
         }
         if (Input.GetAxisRaw(clockwise) == 0)
             shootingAnti = false;
-
+        /****************************************/
     }
 
     public void SpawnBulletRing()
@@ -82,17 +106,17 @@ public class BulletSpawner : MonoBehaviour
         {
             Vector3 pos = Circle(center, i, circleSpawnRadius, numBullets_ring);
             GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
-            newBullet.gameObject.GetComponent<BossBulletLogic>().SetDirection(pos);
+            newBullet.gameObject.GetComponent<BossBulletLogic>().SetDirection(pos - center);
             newBullet.gameObject.GetComponent<BossBulletLogic>().SetPause(true);
         }
     }
-    // set angles to high and skip angles
+
     IEnumerator SpawnSpiral()
     {
         int counter = 0;
         while (true)
         {
-            meterLeft -= 2;
+            meterLeft -= meterDrain;
             if (meterLeft <= 0)
                 break;
             if (counterClockwise)
@@ -104,12 +128,13 @@ public class BulletSpawner : MonoBehaviour
             Vector3 pos = Circle(center, counter, circleSpawnRadius, numBullets_spiral);
 
             GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
-            newBullet.gameObject.GetComponent<BossBulletLogic>().SetDirection(pos);
+            newBullet.gameObject.GetComponent<BossBulletLogic>().SetDirection(pos - center);
             yield return new WaitForSeconds(spiralPauseTime);
         }
     }
     private void UpdateSpiralMeter()
     {
+        GameObject.Find("SpiralFill").GetComponent<Image>().color = gmScript.currentBossColor;
         spiralSlider.value = meterLeft;
     }
 
@@ -126,8 +151,23 @@ public class BulletSpawner : MonoBehaviour
 
     private bool ToggleBool(bool target)
     {
-        if (target)
-            return false;
-        return true;
+        return target ? false : true;
+    }
+
+    public void SwapControls()
+    {
+        isPlayer1 = isPlayer1 ? false : true;
+        if (isPlayer1)
+        {
+            Pattern1Input = gmScript.Pattern1Input;
+            Pattern2Input = gmScript.Pattern2Input;
+            clockwise = gmScript.clockwise;
+        }
+        else
+        {
+            Pattern1Input = gmScript.Pattern1InputP2;
+            Pattern2Input = gmScript.Pattern2InputP2;
+            clockwise = gmScript.clockwiseP2;
+        }
     }
 }

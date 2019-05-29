@@ -12,15 +12,27 @@ public class BossHealth : MonoBehaviour
 
     private int fixedDamage = 1;
 
+    GameObject gm = null;
+    GameManager gmScript = null;
+
     void Awake()
     {
         healthSlider = GameObject.Find("BossHealthSlider").GetComponent<Slider>();
-        currentHealth = maxHealth;
+        gm = GameObject.Find("GameManager");
+        gmScript = gm.GetComponent<GameManager>();
+
+        ResetHealth();
         InvokeRepeating("DamageSelf", 0.0f, 1.0f);
     }
 
     void Update()
     {      
+    }
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthBar();
     }
 
     public void DamageSelf()
@@ -30,12 +42,14 @@ public class BossHealth : MonoBehaviour
 
         if( currentHealth == 0 )
         {
-            Debug.Log("BOSS DEAD. SWAP SIDES");
+            gmScript.Swap();
         }
     }
 
     private void UpdateHealthBar()
     {
         healthSlider.value = currentHealth;
+        GameObject.Find("BossHealthFill").GetComponent<Image>().color = gmScript.currentBossColor;
+        GameObject.Find("BossHealthBackground").GetComponent<Image>().color = Color.Lerp(gmScript.currentHeroColor, gmScript.currentBossColor, healthSlider.value / 60);
     }
 }

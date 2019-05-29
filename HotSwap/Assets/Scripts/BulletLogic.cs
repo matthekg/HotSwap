@@ -9,9 +9,16 @@ public class BulletLogic : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    GameObject gm = null;
+    GameManager gmScript = null;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        gm = GameObject.Find("GameManager");
+        gmScript = gm.GetComponent<GameManager>();
+
+        gameObject.GetComponent<SpriteRenderer>().color = gmScript.currentHeroColor;
     }
 
     void Update()
