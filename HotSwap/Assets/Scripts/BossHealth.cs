@@ -48,6 +48,11 @@ public class BossHealth : MonoBehaviour
 
     private void UpdateHealthBar()
     {
+        if( gmScript.currentBoss )
+            healthSlider.SetDirection(Slider.Direction.LeftToRight, false);
+        else
+            healthSlider.SetDirection(Slider.Direction.RightToLeft, false);
+
         healthSlider.value = currentHealth;
         GameObject.Find("BossHealthFill").GetComponent<Image>().color = gmScript.currentBossColor;
         GameObject.Find("BossHealthBackground").GetComponent<Image>().color = Color.Lerp(gmScript.currentHeroColor, gmScript.currentBossColor, healthSlider.value / 60);

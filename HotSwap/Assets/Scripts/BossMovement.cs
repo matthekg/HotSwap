@@ -48,6 +48,9 @@ public class BossMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (gmScript.paused)
+            return;
+
         if (rawInputOn)
         {
             xInput = Input.GetAxisRaw(horizontalControl);

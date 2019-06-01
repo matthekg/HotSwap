@@ -45,12 +45,16 @@ public class HeroMovement : MonoBehaviour
 
     void Update()
     {
+
         //        if ( Input.GetAxisRaw(dodgeControl) > 0 )
         //            Dodge();
     }
 
     void FixedUpdate()
     {
+        if (gmScript.paused)
+            return;
+
         if (rawInputOn) {
             xInput = Input.GetAxisRaw(horizontalControl);
             yInput = Input.GetAxisRaw(verticalControl);

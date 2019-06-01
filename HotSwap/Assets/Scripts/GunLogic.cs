@@ -13,14 +13,23 @@ public class GunLogic : MonoBehaviour
     [SerializeField] float autoFireRate = 1f;
     [SerializeField] GameObject bullet;
 
+    GameObject gm = null;
+    GameManager gmScript = null;
+
     void Start()
     {
+        gm = GameObject.Find("GameManager");
+        gmScript = gm.GetComponent<GameManager>();
+
         shootControl = GameObject.Find("GameManager").GetComponent<GameManager>().shootControl;
         rotationPoint = transform.parent.transform;    
     }
 
     void Update()
     {
+        if (gmScript.paused)
+            return;
+
         // Get direction from player to mouse
         Vector3 centerToMouseDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - rotationPoint.position;
 

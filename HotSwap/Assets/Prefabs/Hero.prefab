@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1: 1
-  speed: 2
+  speed: 3
   dodgeSpeed: 0
   dodgeDistance: 0
   dodgeIFrames: 0
@@ -152,6 +152,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHearts: 3
   currentHearts: 0
+  hearts: {fileID: 0}
+  left: 1
+  right: 0
+  heartColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8053882315770537734
 GameObject:
   m_ObjectHideFlags: 0

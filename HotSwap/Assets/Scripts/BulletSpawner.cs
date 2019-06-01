@@ -18,15 +18,12 @@ public class BulletSpawner : MonoBehaviour
 
     [Header("[1] : BulletRing")]
     public string Pattern1Input = null;
-    private bool shootingPattern1 = false;
     [SerializeField] int numBullets_ring = 12;
     [SerializeField] float circleSpawnRadius = 3f;
 
     [Header("[2] : BulletSpiral")]
     public string Pattern2Input = null;
     public string clockwise = null;
-    private bool shootingPattern2 = false;
-    private bool shootingAnti = false;
     [SerializeField] int numBullets_spiral = 20;
     [SerializeField] int skipEvery = 1;
     [SerializeField] float spiralPauseTime = 1f;
@@ -63,39 +60,29 @@ public class BulletSpawner : MonoBehaviour
 
     void Update()
     {
+        if (gmScript.paused)
+            return;
         /**********PATTERN 1 | RING************/
-        if (Input.GetAxisRaw(Pattern1Input) != 0 && !shootingPattern1)
-        {
-            shootingPattern1 = true;
+        if (Input.GetButtonDown(Pattern1Input))
             SpawnBulletRing();
-        }
-        if (Input.GetAxisRaw(Pattern1Input) == 0)
-            shootingPattern1 = false;
         /**************************************/
 
         /**********PATTERN 2 | SPIRAL************/
-        if ( meterLeft < spiralMeterCapacity && !shootingPattern2 )
+        if ( meterLeft < spiralMeterCapacity && Input.GetAxisRaw(Pattern2Input) == 0 )
             meterLeft += meterGain;
         UpdateSpiralMeter();
 
-        if (Input.GetAxisRaw(Pattern2Input) != 0 && !shootingPattern2)
+        if (Input.GetButtonDown(Pattern2Input))
         {
-            shootingPattern2 = true;
             spiral = StartCoroutine(SpawnSpiral());
         }    
-        if (Input.GetAxisRaw(Pattern2Input) == 0 && spiral != null)
+        if (Input.GetAxisRaw(Pattern2Input) == 0)
         {
             StopCoroutine(spiral);
-            shootingPattern2 = false;
         }
 
-        if (Input.GetAxisRaw(clockwise) != 0 && !shootingAnti)
-        {
-            shootingAnti = true;
+        if (Input.GetButtonDown(clockwise))
             counterClockwise = ToggleBool(counterClockwise);
-        }
-        if (Input.GetAxisRaw(clockwise) == 0)
-            shootingAnti = false;
         /****************************************/
     }
 
@@ -134,6 +121,8 @@ public class BulletSpawner : MonoBehaviour
     }
     private void UpdateSpiralMeter()
     {
+        // make it so cooldowns switch sides as well
+
         GameObject.Find("SpiralFill").GetComponent<Image>().color = gmScript.currentBossColor;
         spiralSlider.value = meterLeft;
     }

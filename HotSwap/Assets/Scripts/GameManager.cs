@@ -36,9 +36,11 @@ public class GameManager : MonoBehaviour
     GameObject player2 = null;
     GameObject boss = null;
 
+    public bool paused;
+
     void Start()
     {
-        player1 = GameObject.Find("Hero");
+        player1 = GameObject.Find("Hero 1");
         player2 = GameObject.Find("Hero 2");
         boss = GameObject.Find("Boss");
 
@@ -68,8 +70,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightShift))
-            Swap();
+    
     }
 
     public void Swap()
