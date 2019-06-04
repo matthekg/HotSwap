@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,12 +30,13 @@ public class GameManager : MonoBehaviour
     /* bool to represent who is the current hero. True:P1::False:P2 */
     public bool currentHero = true;
     public bool currentBoss = false;
-    public Color currentHeroColor, currentBossColor, player1Color, player2Color;
+    public Color currentHeroColor, currentBossColor, player1Color, player2Color, winnerColor;
 
 
     GameObject player1 = null;
     GameObject player2 = null;
     GameObject boss = null;
+    GameObject winScreen = null;
 
     public bool paused;
 
@@ -43,6 +45,9 @@ public class GameManager : MonoBehaviour
         player1 = GameObject.Find("Hero 1");
         player2 = GameObject.Find("Hero 2");
         boss = GameObject.Find("Boss");
+        winScreen = GameObject.Find("WinScreen");
+
+        winScreen.SetActive(false);
 
         player1Color = player1.GetComponent<SpriteRenderer>().color;
         player2Color = player2.GetComponent<SpriteRenderer>().color;
@@ -68,11 +73,19 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void Update()
+    public void EndGame()
     {
-    
-    }
+        Time.timeScale = 0;
 
+        if (player1.GetComponent<HeroHealth>().currentHearts == 0)
+            winnerColor = player2Color;
+        else if (player2.GetComponent<HeroHealth>().currentHearts == 0)
+            winnerColor = player1Color;
+
+        winScreen.SetActive(true);
+        Text winText = GameObject.Find("WinText").GetComponent<Text>();
+        winText.color = winnerColor;
+    }
     public void Swap()
     {
         Debug.Log("Swap!");

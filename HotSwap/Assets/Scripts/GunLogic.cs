@@ -22,7 +22,7 @@ public class GunLogic : MonoBehaviour
         gmScript = gm.GetComponent<GameManager>();
 
         shootControl = GameObject.Find("GameManager").GetComponent<GameManager>().shootControl;
-        rotationPoint = transform.parent.transform;    
+        rotationPoint = transform.parent.transform; 
     }
 
     void Update()

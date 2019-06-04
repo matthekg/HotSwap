@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HeroHealth : MonoBehaviour
 {
     [SerializeField] int maxHearts = 3;
-    [SerializeField] int currentHearts = 3;
+    public int currentHearts = 3;
     public Image hearts = null;
     private int heartHeight, heartWidth = 32; //pixels
     public bool left, right;
@@ -34,7 +34,7 @@ public class HeroHealth : MonoBehaviour
         --currentHearts;
 
         if (currentHearts == 0)
-            Debug.Log("HERO DEAD. GAME OVER");
+            gmScript.EndGame();
 
         updateUI();
         gmScript.Swap();

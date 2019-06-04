@@ -14,12 +14,17 @@ public class BulletSpawner : MonoBehaviour
     public GameObject bossGameObject = null;
     public GameObject bulletPrefab;
 
-    private Slider spiralSlider = null;
+    private Slider spiralSlider, ringSlider = null;
 
     [Header("[1] : BulletRing")]
     public string Pattern1Input = null;
     [SerializeField] int numBullets_ring = 12;
     [SerializeField] float circleSpawnRadius = 3f;
+    [SerializeField] float ringMeterCapacity = 50f;
+    [SerializeField] float ringMeterLeft = 0f;
+    [SerializeField] float ringMeterGain = 5f;
+    [SerializeField] float ringMeterDrain = 10f;
+
 
     [Header("[2] : BulletSpiral")]
     public string Pattern2Input = null;
@@ -29,10 +34,11 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] float spiralPauseTime = 1f;
     [SerializeField] bool counterClockwise = false;
     [SerializeField] int spiralMeterCapacity = 50;
-    [SerializeField] int meterLeft = 0;
-    [SerializeField] int meterGain = 1;
-    [SerializeField] int meterDrain = 1;
+    [SerializeField] int spiralMeterLeft = 0;
+    [SerializeField] int spiralMeterGain = 1;
+    [SerializeField] int spiralMeterDrain = 1;
     private Coroutine spiral = null;
+    private bool createdCoroutine;
 
     GameObject gm = null;
     GameManager gmScript = null;
@@ -40,6 +46,8 @@ public class BulletSpawner : MonoBehaviour
     void Awake()
     {
         spiralSlider = GameObject.Find("SpiralMeterSlider").GetComponent<Slider>();
+        ringSlider = GameObject.Find("RingMeterSlider").GetComponent<Slider>();
+
         gm = GameObject.Find("GameManager");
         gmScript = gm.GetComponent<GameManager>();
         isPlayer1 = bossGameObject.GetComponent<BossMovement>().isPlayer1;
@@ -65,18 +73,23 @@ public class BulletSpawner : MonoBehaviour
         /**********PATTERN 1 | RING************/
         if (Input.GetButtonDown(Pattern1Input))
             SpawnBulletRing();
+
+        if (ringMeterLeft < ringMeterCapacity && Input.GetAxisRaw(Pattern2Input) == 0)
+            ringMeterLeft += ringMeterGain;
+        UpdateRingMeter();
         /**************************************/
 
         /**********PATTERN 2 | SPIRAL************/
-        if ( meterLeft < spiralMeterCapacity && Input.GetAxisRaw(Pattern2Input) == 0 )
-            meterLeft += meterGain;
+        if ( spiralMeterLeft < spiralMeterCapacity && Input.GetAxisRaw(Pattern2Input) == 0 )
+            spiralMeterLeft += spiralMeterGain;
         UpdateSpiralMeter();
 
         if (Input.GetButtonDown(Pattern2Input))
         {
             spiral = StartCoroutine(SpawnSpiral());
+            createdCoroutine = true;
         }    
-        if (Input.GetAxisRaw(Pattern2Input) == 0)
+        if (!Input.GetButton(Pattern2Input) && createdCoroutine)
         {
             StopCoroutine(spiral);
         }
@@ -88,6 +101,10 @@ public class BulletSpawner : MonoBehaviour
 
     public void SpawnBulletRing()
     {
+        ringMeterLeft -= ringMeterDrain;
+        if (ringMeterLeft <= 0)
+            return;
+
         Vector3 center = bossGameObject.transform.position;
         for (int i = 1; i <= numBullets_ring; ++i)
         {
@@ -103,8 +120,8 @@ public class BulletSpawner : MonoBehaviour
         int counter = 0;
         while (true)
         {
-            meterLeft -= meterDrain;
-            if (meterLeft <= 0)
+            spiralMeterLeft -= spiralMeterDrain;
+            if (spiralMeterLeft <= 0)
                 break;
             if (counterClockwise)
                 counter -= skipEvery;
@@ -124,7 +141,15 @@ public class BulletSpawner : MonoBehaviour
         // make it so cooldowns switch sides as well
 
         GameObject.Find("SpiralFill").GetComponent<Image>().color = gmScript.currentBossColor;
-        spiralSlider.value = meterLeft;
+        spiralSlider.value = spiralMeterLeft;
+    }
+
+    private void UpdateRingMeter()
+    {
+        // make it so cooldowns switch sides as well
+
+        GameObject.Find("RingFill").GetComponent<Image>().color = gmScript.currentBossColor;
+        ringSlider.value = ringMeterLeft;
     }
 
     Vector3 Circle(Vector3 center, float angleModifier, float radius, float numBullets)

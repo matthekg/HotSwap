@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8053882313665538971, guid: 45bae2f0e90ad984cb8dc554ee521ed8,
         type: 3}
       propertyPath: m_Name
-      value: Hero 2
+      value: Hero 2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8053882313665538964, guid: 45bae2f0e90ad984cb8dc554ee521ed8,
         type: 3}
@@ -67,6 +67,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 317511585, guid: 45bae2f0e90ad984cb8dc554ee521ed8, type: 3}
+      propertyPath: left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317511585, guid: 45bae2f0e90ad984cb8dc554ee521ed8, type: 3}
+      propertyPath: right
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8053882313665538968, guid: 45bae2f0e90ad984cb8dc554ee521ed8,
         type: 3}
       propertyPath: isPlayer1
@@ -80,10 +88,6 @@ PrefabInstance:
     - target: {fileID: 8053882313665538967, guid: 45bae2f0e90ad984cb8dc554ee521ed8,
         type: 3}
       propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 317511585, guid: 45bae2f0e90ad984cb8dc554ee521ed8, type: 3}
-      propertyPath: right
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

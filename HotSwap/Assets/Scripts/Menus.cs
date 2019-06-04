@@ -13,14 +13,16 @@ public class Menus : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject quitMenu;
 
-    void Awake()
+    void Start()
     {
-        gm = GameObject.Find("GameManager");
-        gmScript = gm.GetComponent<GameManager>();
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            gm = GameObject.Find("GameManager");
+            gmScript = gm.GetComponent<GameManager>();
 
-        pauseMenu = GameObject.Find("PauseMenu");
-        quitMenu = GameObject.Find("QuitMenu");
-        pauseMenu.SetActive(false);
+            pauseMenu = GameObject.Find("PauseMenu");
+            pauseMenu.SetActive(false);
+        }
         quitMenu.SetActive(false);
     }
 
@@ -62,7 +64,7 @@ public class Menus : MonoBehaviour
 
     public void Restart()
     {
-        LoadScene(SceneManager.GetActiveScene().ToString());
+        LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void CharacterSelect()
