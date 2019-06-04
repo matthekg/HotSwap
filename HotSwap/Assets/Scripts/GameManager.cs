@@ -11,9 +11,13 @@ public class GameManager : MonoBehaviour
     public string shootControl = "Fire1";
     public bool rawInputOn = true;
 
+    public string currentShootControl;
+
     [Header("HeroControls | Player2")]
     public string horizontalControlP2 = "HorizontalP2";
     public string verticalControlP2 = "VerticalP2";
+    public string shootControlP2 = "Fire1P2";
+
 
     [Header("BossControls")]
     public string Pattern1Input = "Pattern1";
@@ -62,7 +66,7 @@ public class GameManager : MonoBehaviour
             currentBossColor = player1Color;
             currentHeroColor = player2Color;
         }
-
+        currentShootControl = shootControl;
         boss.GetComponent<SpriteRenderer>().color = currentBossColor;
 
         // Disable the hero that isnt the current one
@@ -98,6 +102,11 @@ public class GameManager : MonoBehaviour
         // Swap the Hero prefabs
         player1.gameObject.SetActive( !(currentHero ^ player1.GetComponent<HeroMovement>().isPlayer1) );
         player2.gameObject.SetActive( !(currentHero ^ player2.GetComponent<HeroMovement>().isPlayer1) );
+
+        if (currentHero)
+            currentShootControl = shootControl;
+        else
+            currentShootControl = shootControlP2;
 
         // Swap the Boss controls
         boss.GetComponent<BossMovement>().UpdateState();

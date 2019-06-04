@@ -21,7 +21,7 @@ public class GunLogic : MonoBehaviour
         gm = GameObject.Find("GameManager");
         gmScript = gm.GetComponent<GameManager>();
 
-        shootControl = GameObject.Find("GameManager").GetComponent<GameManager>().shootControl;
+        shootControl = GameObject.Find("GameManager").GetComponent<GameManager>().currentShootControl;
         rotationPoint = transform.parent.transform; 
     }
 
@@ -41,6 +41,7 @@ public class GunLogic : MonoBehaviour
         Vector3 gunDistanceFromSelf = armLength * centerToMouseDir.normalized;
         transform.position = rotationPoint.position + gunDistanceFromSelf;
 
+        shootControl = gmScript.currentShootControl;
         if (Input.GetAxisRaw(shootControl) != 0) {
             if (!currentlyShooting || Time.time > nextFire) {
                 Shoot(centerToMouseDir);

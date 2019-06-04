@@ -15,9 +15,9 @@ public class HeroMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private string horizontalControl;
-    private string verticalControl;
-    private string shootControl;
+    [SerializeField] string horizontalControl;
+    [SerializeField] string verticalControl;
+    [SerializeField] string shootControl;
     private bool rawInputOn = true;
     private float xInput = 0;
     private float yInput = 0;
