@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,11 +45,19 @@ public class GameManager : MonoBehaviour
 
     public bool paused;
 
-    void Start()
+    // void OnEnable()
+    // {
+    //     SceneManager.sceneLoaded += OnSceneLoaded;
+    // }
+
+    public void SetupGame()//OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        player1 = GameObject.Find("Hero 1");
-        player2 = GameObject.Find("Hero 2");
-        boss = GameObject.Find("Boss");
+        //Debug.Log("OnSceneLoaded: " + scene.name);
+
+
+        player1 = GameObject.Find("Hero1(Clone)");
+        player2 = GameObject.Find("Hero2(Clone)");
+        boss = GameObject.Find("Boss(Clone)");
         winScreen = GameObject.Find("WinScreen");
 
         winScreen.SetActive(false);

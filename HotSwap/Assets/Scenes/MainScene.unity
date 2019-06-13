@@ -757,6 +757,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1587669699660164419, guid: 45bae2f0e90ad984cb8dc554ee521ed8,
+        type: 3}
+      propertyPath: _serializerGuid
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -1587669699660164419, guid: 45bae2f0e90ad984cb8dc554ee521ed8,
+        type: 3}
+      propertyPath: _sceneGuid
+      value: 6a6a4e1a-7cd2-41aa-8fd8-9f3781f35474
+      objectReference: {fileID: 0}
     - target: {fileID: 8053882313665538971, guid: 45bae2f0e90ad984cb8dc554ee521ed8,
         type: 3}
       propertyPath: m_Name
@@ -821,6 +831,10 @@ PrefabInstance:
       propertyPath: hearts
       value: 
       objectReference: {fileID: 952437066}
+    - target: {fileID: 0}
+      propertyPath: _sceneGuid
+      value: 4ef15aba-da72-4fef-b152-1b693248e5c8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45bae2f0e90ad984cb8dc554ee521ed8, type: 3}
 --- !u!1 &1306431683
@@ -909,6 +923,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5577611669362334604, guid: 0dc791886418d494fbf0c7cda2de6902,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1850667068}
+    - target: {fileID: 5577611669362334604, guid: 0dc791886418d494fbf0c7cda2de6902,
+        type: 3}
+      propertyPath: quitMenu
+      value: 
+      objectReference: {fileID: 561871747}
     - target: {fileID: 5577611669362334600, guid: 0dc791886418d494fbf0c7cda2de6902,
         type: 3}
       propertyPath: m_Name
@@ -969,16 +993,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5577611669362334604, guid: 0dc791886418d494fbf0c7cda2de6902,
-        type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 1850667068}
-    - target: {fileID: 5577611669362334604, guid: 0dc791886418d494fbf0c7cda2de6902,
-        type: 3}
-      propertyPath: quitMenu
-      value: 
-      objectReference: {fileID: 561871747}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dc791886418d494fbf0c7cda2de6902, type: 3}
 --- !u!1 &1584574334
@@ -1384,6 +1398,15 @@ PrefabInstance:
       propertyPath: hearts
       value: 
       objectReference: {fileID: 994454128}
+    - target: {fileID: 2160406960502277185, guid: d9af47a112755af4dbf39b821860d267,
+        type: 3}
+      propertyPath: _sceneGuid
+      value: 79edb7fc-2e0d-49b3-b506-12ab084a5024
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _sceneGuid
+      value: 439e82c0-a7e6-4f8e-b412-7339ed51bd51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9af47a112755af4dbf39b821860d267, type: 3}
 --- !u!1 &889981678693567683 stripped

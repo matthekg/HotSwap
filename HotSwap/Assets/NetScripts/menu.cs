@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System;
 using UdpKit;
 using UnityEngine;
 
@@ -14,7 +16,7 @@ public class menu : Bolt.GlobalEventListener
 		if (BoltNetwork.isServer){
 			string matchName = "Match Start";
 			BoltNetwork.SetServerInfo(matchName,null);
-			BoltNetwork.LoadScene("SampleScene");
+			BoltNetwork.LoadScene("LevelScene");
 		}
 	}
 	public override void SessionListUpdated(Map<Guid, UdpSession> sessionList){

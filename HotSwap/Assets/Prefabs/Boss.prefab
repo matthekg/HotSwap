@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -7301960358220647729}
   - component: {fileID: 4196633140116090667}
   - component: {fileID: 196059225504490786}
+  - component: {fileID: 5855008807083881778}
   m_Layer: 10
   m_Name: Boss
   m_TagString: Boss
@@ -150,3 +151,32 @@ MonoBehaviour:
   speed: 2
   horizontalControl: 
   verticalControl: 
+--- !u!114 &5855008807083881778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889981678693567683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -36112512, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneGuid: 
+  _serializerGuid: 329b398b-c611-44e2-b73c-e0993266ab39
+  _prefabId: 1
+  _updateRate: 1
+  _autoFreezeProxyFrames: 0
+  _clientPredicted: 1
+  _allowInstantiateOnClient: 1
+  _persistThroughSceneLoads: 0
+  _sceneObjectDestroyOnDetach: 1
+  _sceneObjectAutoAttach: 1
+  _alwaysProxy: 0
+  _detachOnDisable: 1
+  _allowFirstReplicationWhenFrozen: 0
+  _autoRemoveChildEntities: 0
+  _entityBehaviourQueryOption: 0
+  _entityPriorityCalculatorQueryOption: 0
+  _entityReplicationFilterQueryOption: 0

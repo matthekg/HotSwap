@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroMovement : MonoBehaviour
+public class HeroMovement : Bolt.EntityBehaviour<IPracticeState>
 {
+
+
+
     public bool isPlayer1 = false;
 
     [Header("Movement Stats")]
@@ -25,8 +28,12 @@ public class HeroMovement : MonoBehaviour
     GameObject gm = null;
     GameManager gmScript = null;
 
-    void Awake()
-    {
+
+    public override void Attached(){
+        state.SetTransforms(state.PracticeTransform,transform);
+  //  }
+  //  void Awake()
+  //  {
         rb = GetComponent<Rigidbody2D>();
         gm = GameObject.Find("GameManager");
         gmScript = gm.GetComponent<GameManager>();
@@ -43,14 +50,7 @@ public class HeroMovement : MonoBehaviour
 
     }
 
-    void Update()
-    {
-
-        //        if ( Input.GetAxisRaw(dodgeControl) > 0 )
-        //            Dodge();
-    }
-
-    void FixedUpdate()
+    public override void SimulateOwner()
     {
         if (gmScript.paused)
             return;
