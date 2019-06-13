@@ -44,12 +44,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1: 0
-  bossGameObject: {fileID: 0}
+  bossGameObject: {fileID: 889981678693567683, guid: 10fa649e51a543046a9c8d546a32572c,
+    type: 3}
   bulletPrefab: {fileID: 6246949423883536433, guid: 5d90bd8145d7f4c4d8b132ab1c0d6494,
     type: 3}
   Pattern1Input: Pattern1
   numBullets_ring: 32
   circleSpawnRadius: 1
+  ringMeterCapacity: 50
+  ringMeterLeft: 0
+  ringMeterGain: 5
+  ringMeterDrain: 10
   Pattern2Input: Pattern2
   clockwise: Clockwise
   numBullets_spiral: 64
@@ -57,6 +62,6 @@ MonoBehaviour:
   spiralPauseTime: 0.01
   counterClockwise: 0
   spiralMeterCapacity: 300
-  meterLeft: 0
-  meterGain: 3
-  meterDrain: 2
+  spiralMeterLeft: 0
+  spiralMeterGain: 1
+  spiralMeterDrain: 1

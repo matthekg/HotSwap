@@ -50,6 +50,8 @@ public class BulletSpawner : MonoBehaviour
 
         gm = GameObject.Find("GameManager");
         gmScript = gm.GetComponent<GameManager>();
+        bossGameObject = GameObject.Find("Boss(Clone)");
+        
         isPlayer1 = bossGameObject.GetComponent<BossMovement>().isPlayer1;
         if (isPlayer1)
         {

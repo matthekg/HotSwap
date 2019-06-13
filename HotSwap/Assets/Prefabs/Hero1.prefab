@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: dcbb42a300282c944b870b7360ea7334, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d0ced5b858ed744b33d38269d81b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer1: 0
+  isPlayer1: 1
   speed: 5
   dodgeSpeed: 0
   dodgeDistance: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   maxHearts: 3
   currentHearts: 0
   hearts: {fileID: 0}
+  hearts2: {fileID: 0}
   left: 1
   right: 0
   heartColor: {r: 0, g: 0, b: 0, a: 0}
@@ -174,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 329b398b-c611-44e2-b73c-e0993266ab39
-  _prefabId: 2
+  _prefabId: 4
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1

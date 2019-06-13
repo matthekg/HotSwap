@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: dcbb42a300282c944b870b7360ea7334, type: 3}
   m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_FlipX: 0
@@ -157,6 +157,7 @@ MonoBehaviour:
   maxHearts: 3
   currentHearts: 0
   hearts: {fileID: 0}
+  hearts2: {fileID: 0}
   left: 0
   right: 1
   heartColor: {r: 0, g: 0, b: 0, a: 0}
@@ -174,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 329b398b-c611-44e2-b73c-e0993266ab39
-  _prefabId: 3
+  _prefabId: 5
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1

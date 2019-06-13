@@ -8,6 +8,7 @@ public class HeroHealth : MonoBehaviour
     [SerializeField] int maxHearts = 3;
     public int currentHearts = 3;
     public Image hearts = null;
+    public Image hearts2 = null;
     private int heartHeight, heartWidth = 32; //pixels
     public bool left, right;
     public Color heartColor;
@@ -42,12 +43,14 @@ public class HeroHealth : MonoBehaviour
 
     public void updateUI()
     {
+        hearts = GameObject.Find("Hero1 Hearts").GetComponent<Image>();
+        hearts2 = GameObject.Find("Hero2 Hearts").GetComponent<Image>();
         hearts.color = heartColor;
         if( left )
             hearts.rectTransform.SetInsetAndSizeFromParentEdge(
             RectTransform.Edge.Left, 42, currentHearts * heartWidth);
         if( right )
-            hearts.rectTransform.SetInsetAndSizeFromParentEdge(
+            hearts2.rectTransform.SetInsetAndSizeFromParentEdge(
             RectTransform.Edge.Right, 42, currentHearts * heartWidth);
     }
 

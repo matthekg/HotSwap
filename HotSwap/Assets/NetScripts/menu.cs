@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class menu : Bolt.GlobalEventListener
 {
+	// public bool Host = false;
 	public void StartServer(){
 		BoltLauncher.StartServer();
+		// Host = true;
 	}
 	public void StartClient(){
 		BoltLauncher.StartClient();
