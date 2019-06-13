@@ -50,6 +50,10 @@ MonoBehaviour:
   Pattern1Input: Pattern1
   numBullets_ring: 32
   circleSpawnRadius: 1
+  ringMeterCapacity: 50
+  ringMeterLeft: 0
+  ringMeterGain: 2
+  ringMeterDrain: 49
   Pattern2Input: Pattern2
   clockwise: Clockwise
   numBullets_spiral: 64
@@ -57,6 +61,6 @@ MonoBehaviour:
   spiralPauseTime: 0.01
   counterClockwise: 0
   spiralMeterCapacity: 300
-  meterLeft: 0
-  meterGain: 3
-  meterDrain: 2
+  spiralMeterLeft: 0
+  spiralMeterGain: 1
+  spiralMeterDrain: 1

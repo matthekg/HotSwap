@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 164.15002, y: 17.6}
-  m_SizeDelta: {x: 242.7, y: 179.7}
+  m_AnchoredPosition: {x: 154.4, y: -26.974989}
+  m_SizeDelta: {x: 223.3, y: 268.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228700069
 MonoBehaviour:
@@ -200,11 +200,16 @@ MonoBehaviour:
     Player 2: Arrow Keys
 
 
-    Boss Controls:
+    Boss Controls: Ring, Spiral, Switch Rotation
 
     Player1: JKL
 
-    Player2: Numpad 123'
+    Player2: Numpad 123
+
+
+    Hero Controls: Click to shoot!
+
+    Share the mouse! Whoever is playing the hero should have the mouse'
 --- !u!222 &228700070
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -540,7 +545,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainScene
+          m_StringArgument: SampleScene
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
