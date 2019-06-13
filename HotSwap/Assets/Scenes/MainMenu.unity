@@ -191,6 +191,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Players take turns being the Hero and the Boss in a twin stick bullet hell.
+    Kill the boss to take control of them! Whoever loses all of their hero''s hearts
+    first loses!
 
 
     Controls:
@@ -204,7 +206,7 @@ MonoBehaviour:
 
     Player1: JKL
 
-    Player2: Numpad 123
+    Player2: Numpad 123 (or , . / )
 
 
     Hero Controls: Click to shoot!
