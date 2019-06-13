@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMovement : MonoBehaviour
+public class BossMovement :  Bolt.EntityBehaviour<IPracticeState>
 {
     public bool isPlayer1 = false;
 
@@ -21,7 +21,7 @@ public class BossMovement : MonoBehaviour
     GameManager gmScript = null;
 
     // Start is called before the first frame update
-    void Awake()
+    public override void Attached()
     {
         rb = GetComponent<Rigidbody2D>();
         gm = GameObject.Find("GameManager");
@@ -46,7 +46,7 @@ public class BossMovement : MonoBehaviour
     {
         isPlayer1 = gmScript.currentBoss;
     }
-    void FixedUpdate()
+    public override void SimulateOwner()
     {
         if (gmScript.paused)
             return;
