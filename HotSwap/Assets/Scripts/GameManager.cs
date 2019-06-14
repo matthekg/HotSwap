@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     GameObject player2 = null;
     GameObject boss = null;
     GameObject winScreen = null;
+    bool check = false;
 
     public bool paused;
 
@@ -49,21 +50,27 @@ public class GameManager : MonoBehaviour
     {
         player1 = GameObject.Find("Hero1(Clone)");
         player1Color = player1.GetComponent<SpriteRenderer>().color;
+        check = true;
     }
     public void LoadPlayer2()
     {
         player2 = GameObject.Find("Hero2(Clone)");
         boss = GameObject.Find("Boss(Clone)");
         player2Color = player2.GetComponent<SpriteRenderer>().color;
+        if (check == true){
+            SetupGame();
+        }
+        
     }
 
     public void SetupGame()//OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //Debug.Log("OnSceneLoaded: " + scene.name);
+        winScreen = GameObject.Find("WinScreen");
 
         winScreen.SetActive(false);
 
-        if (currentHero)
+        if (currentHero && player1.GetComponent<HeroMovement>().isPlayer1)
         {
             currentBossColor = player2Color;
             currentHeroColor = player1Color;

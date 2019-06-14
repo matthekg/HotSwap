@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4196633140116090667}
   - component: {fileID: 196059225504490786}
   - component: {fileID: 5855008807083881778}
+  - component: {fileID: 1726001826766691438}
   m_Layer: 10
   m_Name: Boss
   m_TagString: Boss
@@ -181,6 +182,18 @@ MonoBehaviour:
   _entityBehaviourQueryOption: 0
   _entityPriorityCalculatorQueryOption: 0
   _entityReplicationFilterQueryOption: 0
+--- !u!114 &1726001826766691438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889981678693567683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324826680b404f04983a79eb4ebefe4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2550193036865811537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247,6 +260,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373301776571549582, guid: d86c9598722f0f145a4e12277e989180,
+        type: 3}
+      propertyPath: bossGameObject
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86c9598722f0f145a4e12277e989180, type: 3}

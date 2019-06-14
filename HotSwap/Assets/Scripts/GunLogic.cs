@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunLogic : MonoBehaviour
+public class GunLogic : Bolt.EntityBehaviour<IPracticeState>
 {
     [Header("GunMovement")]
     public float armLength = 1f;
@@ -16,7 +16,7 @@ public class GunLogic : MonoBehaviour
     GameObject gm = null;
     GameManager gmScript = null;
 
-    void Start()
+    public override void Attached()
     {
         gm = GameObject.Find("GameManager");
         gmScript = gm.GetComponent<GameManager>();
@@ -25,7 +25,7 @@ public class GunLogic : MonoBehaviour
         rotationPoint = transform.parent.transform; 
     }
 
-    void Update()
+    public override void SimulateOwner()
     {
         if (gmScript.paused)
             return;

@@ -23,7 +23,6 @@ public class NetworkCallbacks : Bolt.GlobalEventListener
         	BoltNetwork.Instantiate(BoltPrefabs.Boss,spawnPosition3,Quaternion.identity);
         	BoltNetwork.Instantiate(BoltPrefabs.Hero2,spawnPosition2,Quaternion.identity);
         	GameObject.Find("GameManager").GetComponent<GameManager>().LoadPlayer2();
-        	GameObject.Find("GameManager").GetComponent<GameManager>().SetupGame();
         }
        	
 

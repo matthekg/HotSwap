@@ -727,7 +727,6 @@
         {
           "Name": "Message",
           "Enabled": true,
-          "Expanded": true,
           "Comment": "",
           "PropertyType": {
             "$type": "Bolt.Compiler.PropertyTypeString, bolt.compiler",
@@ -3460,6 +3459,32 @@
       },
       "Name": "PracticeState",
       "Guid": "329b398b-c611-44e2-b73c-e0993266ab39",
+      "Groups": [
+        "samples"
+      ]
+    },
+    {
+      "$type": "Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [
+        {
+          "Name": "Message",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeString, bolt.compiler",
+            "MaxLength": 1
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
+      "EntitySenders": 3,
+      "GlobalSenders": 1,
+      "Name": "PlayerJoined",
+      "Guid": "7c8a6181-7168-4b52-b0fd-ea4fc45a12ba",
       "Groups": [
         "samples"
       ]
