@@ -45,25 +45,23 @@ public class GameManager : MonoBehaviour
 
     public bool paused;
 
-    // void OnEnable()
-    // {
-    //     SceneManager.sceneLoaded += OnSceneLoaded;
-    // }
+    public void LoadPlayer1()
+    {
+        player1 = GameObject.Find("Hero1(Clone)");
+        player1Color = player1.GetComponent<SpriteRenderer>().color;
+    }
+    public void LoadPlayer2()
+    {
+        player2 = GameObject.Find("Hero2(Clone)");
+        boss = GameObject.Find("Boss(Clone)");
+        player2Color = player2.GetComponent<SpriteRenderer>().color;
+    }
 
     public void SetupGame()//OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //Debug.Log("OnSceneLoaded: " + scene.name);
 
-
-        player1 = GameObject.Find("Hero1(Clone)");
-        player2 = GameObject.Find("Hero2(Clone)");
-        boss = GameObject.Find("Boss(Clone)");
-        winScreen = GameObject.Find("WinScreen");
-
         winScreen.SetActive(false);
-
-        player1Color = player1.GetComponent<SpriteRenderer>().color;
-        player2Color = player2.GetComponent<SpriteRenderer>().color;
 
         if (currentHero)
         {

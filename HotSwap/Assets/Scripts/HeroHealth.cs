@@ -47,10 +47,12 @@ public class HeroHealth : MonoBehaviour
         hearts2 = GameObject.Find("Hero2 Hearts").GetComponent<Image>();
         hearts.color = heartColor;
         if( left )
-            hearts.rectTransform.SetInsetAndSizeFromParentEdge(
+            // hearts.rectTransform.SetInsetAndSizeFromParentEdge(
+            // RectTransform.Edge.Left, 42, currentHearts * heartWidth);
+            hearts2.rectTransform.SetInsetAndSizeFromParentEdge(
             RectTransform.Edge.Left, 42, currentHearts * heartWidth);
         if( right )
-            hearts2.rectTransform.SetInsetAndSizeFromParentEdge(
+            hearts.rectTransform.SetInsetAndSizeFromParentEdge(
             RectTransform.Edge.Right, 42, currentHearts * heartWidth);
     }
 
